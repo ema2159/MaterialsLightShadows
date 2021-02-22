@@ -106,10 +106,10 @@ const phongMaterial = new THREE.MeshPhongMaterial({
 });
 
 // Cone
-const coneDims = [1, 4];
-const coneGeometry1 = new THREE.ConeGeometry(...coneDims);
+const coneProps = [1, 4, 32];
+const coneGeometry1 = new THREE.ConeGeometry(...coneProps);
 const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial1);
-cone1.position.set(x0-2, y0-boxSize/2+coneDims[1]/2, z0-2);
+cone1.position.set(x0-2, y0-boxSize/2+coneProps[1]/2, z0-2);
 scene.add(cone1);
 
 function animate() {
