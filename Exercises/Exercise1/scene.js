@@ -94,9 +94,15 @@ createCornellBox(cornellBoxCenter, boxSize, 2);
 
 
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
-  color: 0xE1E2D4,
+  color: 0x0FCF02,
   emissive: 0x2a2a2a,
   emissiveIntensity: .5,
+});
+
+const phongMaterial = new THREE.MeshPhongMaterial({
+  color: 0xE80202,
+  shininess: 100,
+  specular: 0xE80202,
 });
 
 // Cone
