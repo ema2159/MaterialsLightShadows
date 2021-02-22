@@ -86,7 +86,25 @@ function createCornellBox(boxCenter, boxSide, lightIntensity) {
   scene.add(light);
 }
 
-createCornellBox([0, 0, -7], 9, 2);
+const cornellBoxCenter = [0, 0, -7];
+const [x0, y0, z0] = cornellBoxCenter;
+const boxSize = 9
+
+createCornellBox(cornellBoxCenter, boxSize, 2);
+
+
+const lambertianMaterial1 = new THREE.MeshLambertMaterial({
+  color: 0xE1E2D4,
+  emissive: 0x2a2a2a,
+  emissiveIntensity: .5,
+});
+
+// Cone
+const coneDims = [1, 4];
+const coneGeometry1 = new THREE.ConeGeometry(...coneDims);
+const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial1);
+cone1.position.set(x0-2, y0-boxSize/2+coneDims[1]/2, z0-2);
+scene.add(cone1);
 
 function animate() {
   requestAnimationFrame(animate);
