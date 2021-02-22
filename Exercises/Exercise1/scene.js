@@ -37,6 +37,56 @@ const light = new THREE.PointLight(0xFFFFFF, 1, 100000);
 light.position.set(0, 0, -2).normalize();
 scene.add(light);
 
+const boxCenter = [0, 0, -6];
+const side = 9;
+
+const [x0, y0, z0] = boxCenter;
+const cornellPlaneGeometry = new THREE.PlaneBufferGeometry(side, side, 10, 10)
+
+const whiteLambertianMaterial = new THREE.MeshLambertMaterial({
+  color: 0xE1E2D4,
+  emissive: 0x2a2a2a,
+  emissiveIntensity: .5,
+  side: THREE.DoubleSide
+});
+const redLambertianMaterial = new THREE.MeshLambertMaterial({
+  color: 0xE80202,
+  emissive: 0x2a2a2a,
+  emissiveIntensity: .5,
+  side: THREE.DoubleSide
+});
+
+const greenLambertianMaterial = new THREE.MeshLambertMaterial({
+  color: 0x0FCF02,
+  emissive: 0x2a2a2a,
+  emissiveIntensity: .5,
+  side: THREE.DoubleSide
+});
+
+const leftWall = new THREE.Mesh(cornellPlaneGeometry, redLambertianMaterial);
+leftWall.rotation.y += pi/2;
+leftWall.position.set(x0-side/2,y0,z0);
+scene.add(leftWall);
+
+const rightWall = new THREE.Mesh(cornellPlaneGeometry, greenLambertianMaterial);
+rightWall.rotation.y -= pi/2;
+rightWall.position.set(x0+side/2,y0,z0);
+scene.add(rightWall);
+
+const backWall = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
+backWall.position.set(x0, y0, z0-side/2);
+scene.add(backWall);
+
+const roof = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
+roof.rotation.x += pi/2;
+roof.position.set(x0, y0+side/2, z0);
+scene.add(roof);
+
+const floor = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
+floor.rotation.x += pi/2;
+floor.position.set(x0, y0-side/2, z0);
+scene.add(floor);
+
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
