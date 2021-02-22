@@ -32,13 +32,8 @@ controls.listenToKeyEvents(window); // optional
 // Append renderer to index.html body
 document.body.appendChild(renderer.domElement);
 
-// const light = new THREE.DirectionalLight(0xffffff, 0);
-const light = new THREE.PointLight(0xFFFFFF, 1, 100000);
-light.position.set(0, 0, -2).normalize();
-scene.add(light);
-
 // Cornel box
-function createCornellBox(boxCenter, side) {
+function createCornellBox(boxCenter, side, lightIntensity) {
   const [x0, y0, z0] = boxCenter;
   const cornellPlaneGeometry = new THREE.PlaneBufferGeometry(side, side, 10, 10)
 
@@ -85,9 +80,13 @@ function createCornellBox(boxCenter, side) {
   floor.rotation.x += pi/2;
   floor.position.set(x0, y0-side/2, z0);
   scene.add(floor);
+  
+  const light = new THREE.PointLight(0xFFFFFF, lightIntensity, 100);
+  light.position.set(x0, y0+side/2 -1, z0)
+  scene.add(light);
 }
 
-createCornellBox([0, 0, -7], 9);
+createCornellBox([0, 0, -7], 9, 2);
 
 function animate() {
   requestAnimationFrame(animate);
