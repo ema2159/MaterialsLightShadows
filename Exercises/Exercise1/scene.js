@@ -112,6 +112,13 @@ const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial1);
 cone1.position.set(x0-2, y0-boxSize/2+coneProps[1]/2, z0-2);
 scene.add(cone1);
 
+// Cylinder
+const cylinderProps = [1, 1, 4, 32];
+const cylinderGeometry1 = new THREE.CylinderGeometry(...cylinderProps);
+const cylinder1 = new THREE.Mesh(cylinderGeometry1, phongMaterial);
+cylinder1.position.set(x0+2, y0-boxSize/2+cylinderProps[2]/2, z0-2);
+scene.add(cylinder1);
+
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
