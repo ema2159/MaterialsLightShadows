@@ -105,6 +105,10 @@ const phongMaterial = new THREE.MeshPhongMaterial({
   specular: 0xE80202,
 });
 
+const physicalMaterial = new THREE.MeshPhysicalMaterial({
+  color: 0x79E6F3,
+});
+
 // Cone
 const coneProps = [1, 4, 32];
 const coneGeometry1 = new THREE.ConeGeometry(...coneProps);
