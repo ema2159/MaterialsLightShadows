@@ -123,6 +123,13 @@ const cylinder1 = new THREE.Mesh(cylinderGeometry1, phongMaterial);
 cylinder1.position.set(x0+2, y0-boxSize/2+cylinderProps[2]/2, z0-2);
 scene.add(cylinder1);
 
+// Sphere 1
+const sphereProps = [1, 30, 30];
+const sphereGeometry1 = new THREE.SphereGeometry(...sphereProps);
+const sphere1 = new THREE.Mesh(sphereGeometry1, physicalMaterial);
+sphere1.position.set(x0, y0-boxSize/2+sphereProps[0], z0+1);
+scene.add(sphere1);
+
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
