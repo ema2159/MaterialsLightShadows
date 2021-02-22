@@ -77,7 +77,7 @@ function createCornellBox(boxCenter, side, lightIntensity) {
   scene.add(roof);
 
   const floor = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
-  floor.rotation.x += pi/2;
+  floor.rotation.x -= pi/2;
   floor.position.set(x0, y0-side/2, z0);
   scene.add(floor);
   
