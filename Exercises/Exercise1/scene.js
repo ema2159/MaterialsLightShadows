@@ -110,7 +110,7 @@ const physicalMaterial = new THREE.MeshPhysicalMaterial({
 });
 
 // Cone
-const coneProps = [1, 4, 32];
+const coneProps = [1, 4, 100];
 const coneGeometry1 = new THREE.ConeGeometry(...coneProps);
 const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial1);
 cone1.position.set(x0-2, y0-boxSize/2+coneProps[1]/2, z0-2);
