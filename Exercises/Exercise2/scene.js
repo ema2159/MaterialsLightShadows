@@ -146,6 +146,7 @@ scene.add(sphere1);
 let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, center:true})
     .onChange((debug) => {
     });
+ui.add("title", {name: "Controls", h: 60});
 ui.add("color", {
   name: "Color",
   callback: (color) => {
