@@ -154,6 +154,12 @@ ui.add("color", {
   type: "html",
   value: 0xe80202,
 });
+ui.add("color", {
+  name: "Right Wall Color",
+  callback: (color) => rightWall.material.color.setHex(color),
+  type: "html",
+  value: 0x0fcf02,
+});
 
 function animate() {
   requestAnimationFrame(animate);
