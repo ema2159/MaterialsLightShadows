@@ -90,7 +90,7 @@ const cornellBoxCenter = [0, 0, -7];
 const [x0, y0, z0] = cornellBoxCenter;
 const boxSize = 9
 
-createCornellBox(cornellBoxCenter, boxSize, 1, [100, 100]);
+createCornellBox(cornellBoxCenter, boxSize, 2, [100, 100]);
 
 
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
