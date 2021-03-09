@@ -143,8 +143,9 @@ sphere1.position.set(x0, y0 - boxSize / 2 + sphereProps[0], z0 + 1);
 scene.add(sphere1);
 
 // GUI
-let ui = new UIL.Gui({css: "top:145px; left:10%;", size: 300, center: true});
-ui.add("title", {name: "Controls"});
+let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, center:true})
+    .onChange((debug) => {
+    });
 ui.add("color", {
   name: "Color",
   callback: (color) => {
