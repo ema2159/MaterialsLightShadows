@@ -1,5 +1,6 @@
 import * as THREE from "https://unpkg.com/three/build/three.module.js";
 import {OrbitControls} from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
+import "./node_modules/uil/build/uil.js";
 
 const pi = Math.PI; // I am tired of writing Math.PI
 
@@ -138,6 +139,27 @@ const sphereGeometry1 = new THREE.SphereGeometry(...sphereProps);
 const sphere1 = new THREE.Mesh(sphereGeometry1, physicalMaterial);
 sphere1.position.set(x0, y0 - boxSize / 2 + sphereProps[0], z0 + 1);
 scene.add(sphere1);
+
+// GUI
+let ui = new UIL.Gui({css: "top:145px; left:10%;", size: 300, center: true});
+ui.add("title", {name: "Controls"});
+ui.add("color", {
+  name: "Color",
+  callback: (color) => {
+    leftWall.material.color.setHex(color);
+  },
+  type: "html",
+  value: 0xff0000,
+});
+// ui.add('bool', { name:'Bool', callback:callback});
+// ui.add('color', { name:'Color', callback:callback, type:'rgba', value:[0,1,1,1]});
+// ui.add('slide', { name:'Slide', callback:callback, value:50});
+// ui.add('string', { name:'String', callback:callback, value:'welcome to uil'});
+// ui.add('list', { name:'List', callback:callback, list:['item1', 'item2']});
+// ui.add('number', { name:'Number', callback:callback, value:20, min:0, max:10, precision:2, step:0.01 });
+// ui.add('number', { name:'Vector2', callback:callback, value:[0,0] });
+// ui.add('number', { name:'Vector3', callback:callback, value:[0,0,0] });
+// ui.add('number', { name:'Vector4', callback:callback, value:[0,0,0,0] });
 
 function animate() {
   requestAnimationFrame(animate);
