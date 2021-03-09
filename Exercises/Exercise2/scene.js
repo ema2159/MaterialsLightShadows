@@ -147,13 +147,12 @@ let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, cente
     .onChange((debug) => {
     });
 ui.add("title", {name: "Controls", h: 60});
+// Add Walls controls
 ui.add("color", {
-  name: "Color",
-  callback: (color) => {
-    leftWall.material.color.setHex(color);
-  },
+  name: "Left Wall Color",
+  callback: (color) => leftWall.material.color.setHex(color),
   type: "html",
-  value: 0xff0000,
+  value: 0xe80202,
 });
 
 function animate() {
