@@ -160,6 +160,11 @@ ui.add("color", {
   type: "html",
   value: 0x0fcf02,
 });
+// Add Light intensity controls
+ui.add('slide', {
+  name:'Light intensity',
+  callback: (intensity) => light.intensity = intensity,
+  value:2, min:0, max:5, fontColor:'#FFFFFF', stype:1});
 
 function animate() {
   requestAnimationFrame(animate);
