@@ -25,6 +25,16 @@ const renderer = new THREE.WebGLRenderer();
 // Set renderer size (window size)
 renderer.setSize(window.innerWidth, window.innerHeight);
 
+
+// Auto resize
+function resize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+window.addEventListener( 'resize', resize, false );
+
 // Setup orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.target.set(0, 0, -2);
