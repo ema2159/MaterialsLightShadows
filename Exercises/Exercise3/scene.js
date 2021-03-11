@@ -168,6 +168,12 @@ ui.add('list',
 	     scene.add(light);
 	     break;
 	   case "Directional light":
+	     light = new THREE.DirectionalLight( 0xFFFFFF, 1 );
+	     light.position.set(x0, y0 + boxSize / 2 - 2, z0);
+	     light.target = leftWall;
+	     scene.add(light)
+	     // const helper = new THREE.DirectionalLightHelper( light, 5 );
+	     // scene.add( helper );
 	     break;
 	   case "Spot light":
 	     break;
