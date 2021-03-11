@@ -163,6 +163,9 @@ ui.add('list',
 	   scene.remove(light);
 	   switch (lightTime) {
 	   case "Point light":
+	     light = new THREE.PointLight(0xffffff, 2, 100);
+	     light.position.set(x0, y0 + boxSize / 2 - 1, z0);
+	     scene.add(light);
 	     break;
 	   case "Directional light":
 	     break;
