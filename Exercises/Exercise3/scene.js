@@ -176,6 +176,12 @@ ui.add('list',
 	     // scene.add( helper );
 	     break;
 	   case "Spot light":
+	     light = new THREE.SpotLight( 0xFFFFFF, 1 );
+	     light.position.set(x0, y0 + boxSize / 2 - 0, z0);
+	     light.target = sphere1;
+	     scene.add(light)
+	     // const helper = new THREE.SpotLightHelper( light );
+	     // scene.add( helper );
 	     break;
 	   case "Hemisphere light":
 	     break;
