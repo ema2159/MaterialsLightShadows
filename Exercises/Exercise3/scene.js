@@ -160,6 +160,20 @@ ui.add("title", {name: "Controls", h: 60});
 ui.add('list',
        { name:'Lighting',
 	 callback: (lightTime) => {
+	   scene.remove(light);
+	   switch (lightTime) {
+	   case "Point light":
+	     break;
+	   case "Directional light":
+	     break;
+	   case "Spot light":
+	     break;
+	   case "Hemisphere light":
+	     break;
+	   default:
+	     console.log("Invalid option. Should be unreachable.");
+	     break;
+	   }
 	 },
 	 list:["Point light",
 	       "Directional light",
