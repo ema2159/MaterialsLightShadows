@@ -184,6 +184,10 @@ ui.add('list',
 	     // scene.add( helper );
 	     break;
 	   case "Hemisphere light":
+	     light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+	     scene.add( light );
+	     const helper = new THREE.HemisphereLightHelper( light );
+	     scene.add( helper );
 	     break;
 	   default:
 	     console.log("Invalid option. Should be unreachable.");
