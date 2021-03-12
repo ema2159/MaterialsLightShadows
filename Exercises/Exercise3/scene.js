@@ -171,12 +171,13 @@ ui.add('list',
 	   scene.remove(light);
 	   switch (lightTime) {
 	   case "Point light":
-	     light = new THREE.PointLight(0xffffff, 2, 100);
+	     light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
 	     light.position.set(x0, y0 + boxSize / 2 - 1, z0);
 	     scene.add(light);
 	     break;
 	   case "Directional light":
-	     light = new THREE.DirectionalLight( 0xFFFFFF, 1 );
+	     console.log(parseInt(lightColor));
+	     light = new THREE.DirectionalLight( parseInt(lightColor), lightIntensity );
 	     light.position.set(x0, y0 + boxSize / 2 - 2, z0);
 	     light.target = leftWall;
 	     scene.add(light)
@@ -184,7 +185,7 @@ ui.add('list',
 	     // scene.add( helper );
 	     break;
 	   case "Spot light":
-	     light = new THREE.SpotLight( 0xFFFFFF, 1 );
+	     light = new THREE.SpotLight( parseInt(lightColor), lightIntensity );
 	     light.position.set(x0, y0 + boxSize / 2 - 0, z0);
 	     light.target = sphere1;
 	     scene.add(light)
@@ -206,11 +207,23 @@ ui.add('list',
 	       "Directional light",
 	       "Spot light",
 	       "Hemisphere light"]});
-// Add Light intensity controls
+// Add Light properties controls
 ui.add('slide', {
   name:'Light intensity',
-  callback: (intensity) => light.intensity = intensity,
-  value:2, min:0, max:5, fontColor:'#FFFFFF', stype:1});
+  callback: (intensity) => {
+    lightIntensity = intensity;
+    light.intensity = lightIntensity;
+  },
+  value:lightIntensity, min:0, max:5, fontColor:'#FFFFFF', stype:1});
+ui.add("color", {
+  name: "Light color",
+  callback: (color) => {
+    lightColor = color;
+    light.color.setHex( lightColor );
+  },
+  type: "html",
+  value: lightColor,
+});
 
 function animate() {
   requestAnimationFrame(animate);
