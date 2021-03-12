@@ -123,6 +123,10 @@ let [leftWall, rightWall, light] = createCornellBox(cornellBoxCenter,
 						    lightColor,
 						    [100, 100]);
 
+// Light helper
+let activateHelper = false;
+let helper = new THREE.PointLightHelper( light );
+
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
   color: 0x0fcf02,
   emissive: 0x2a2a2a,
@@ -169,11 +173,15 @@ ui.add('list',
        { name:'Lighting',
 	 callback: (lightTime) => {
 	   scene.remove(light);
+	   if (activateHelper) {
+	     scene.remove(helper);
+	   }
 	   switch (lightTime) {
 	   case "Point light":
 	     light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
 	     light.position.set(x0, y0 + boxSize / 2 - 1, z0);
 	     scene.add(light);
+	     helper = new THREE.PointLightHelper( light );
 	     break;
 	   case "Directional light":
 	     console.log(parseInt(lightColor));
@@ -181,26 +189,26 @@ ui.add('list',
 	     light.position.set(x0, y0 + boxSize / 2 - 2, z0);
 	     light.target = leftWall;
 	     scene.add(light)
-	     // const helper = new THREE.DirectionalLightHelper( light, 5 );
-	     // scene.add( helper );
+	     helper = new THREE.DirectionalLightHelper( light, 5 );
 	     break;
 	   case "Spot light":
 	     light = new THREE.SpotLight( parseInt(lightColor), lightIntensity );
 	     light.position.set(x0, y0 + boxSize / 2 - 0, z0);
 	     light.target = sphere1;
 	     scene.add(light)
-	     // const helper = new THREE.SpotLightHelper( light );
-	     // scene.add( helper );
+	     helper = new THREE.SpotLightHelper( light );
 	     break;
 	   case "Hemisphere light":
-	     light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+	     light = new THREE.HemisphereLight( parseInt(lightColor), 0x080820, lightIntensity );
 	     scene.add( light );
-	     const helper = new THREE.HemisphereLightHelper( light );
-	     scene.add( helper );
+	     helper = new THREE.HemisphereLightHelper( light );
 	     break;
 	   default:
 	     console.log("Invalid option. Should be unreachable.");
 	     break;
+	   }
+	   if (activateHelper) {
+	     scene.add(helper);
 	   }
 	 },
 	 list:["Point light",
@@ -223,6 +231,18 @@ ui.add("color", {
   },
   type: "html",
   value: lightColor,
+});
+ui.add('bool', {
+  name:'Light helper',
+  callback: (activate) => {
+    activateHelper = activate;
+    if(activate) {
+      scene.add(helper);
+    } else {
+      scene.remove(helper);
+    }
+  },
+  value: activateHelper,
 });
 
 function animate() {
