@@ -44,7 +44,7 @@ controls.listenToKeyEvents(window); // optional
 document.body.appendChild(renderer.domElement);
 
 // Cornel box
-function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
+function createCornellBox(boxCenter, boxSide, lightIntensity, lightColor, planeSegments) {
   const [x0, y0, z0] = boxCenter;
   const cornellPlaneGeometry = new THREE.PlaneBufferGeometry(
     boxSide,
@@ -102,7 +102,7 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
   floor.position.set(x0, y0 - boxSide / 2, z0);
   scene.add(floor);
 
-  let light = new THREE.PointLight(0xffffff, lightIntensity, 100);
+  let light = new THREE.PointLight(lightColor, lightIntensity, 100);
   light.position.set(x0, y0 + boxSide / 2 - 1, z0);
   scene.add(light);
 
@@ -113,7 +113,15 @@ const cornellBoxCenter = [0, 0, -7];
 const [x0, y0, z0] = cornellBoxCenter;
 const boxSize = 9;
 
-let [leftWall, rightWall, light] = createCornellBox(cornellBoxCenter, boxSize, 2, [100, 100]);
+// Light properties
+let lightColor = 0xffffff;
+let lightIntensity = 2;
+
+let [leftWall, rightWall, light] = createCornellBox(cornellBoxCenter,
+						    boxSize,
+						    lightIntensity,
+						    lightColor,
+						    [100, 100]);
 
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
   color: 0x0fcf02,
