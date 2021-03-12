@@ -129,7 +129,8 @@ targetObject.position.set(...lightTarget);
 scene.add(targetObject);
 
 // Add ambient light
-const ambientLight = new THREE.AmbientLight(0x404040, 1); // soft white ambientLight
+let ambientLightIntensity = 1;
+const ambientLight = new THREE.AmbientLight(0x404040, ambientLightIntensity); // soft white ambientLight
 scene.add(ambientLight);
 
 // Create Cornell Box
@@ -242,6 +243,19 @@ ui.add("list", {
     light.position.set(...lightPosition);
   },
   list: ["Point light", "Directional light", "Spot light", "Hemisphere light"],
+});
+
+// Ambient light controlls
+ui.add("slide", {
+  name: "Ambient light",
+  callback: (intensity) => {
+    ambientLight.intensity = intensity;
+  },
+  value: ambientLightIntensity,
+  min: 0,
+  max: 5,
+  fontColor: "#FFFFFF",
+  stype: 1,
 });
 
 // Add Light properties controls
