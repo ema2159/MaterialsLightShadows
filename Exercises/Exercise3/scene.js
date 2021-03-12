@@ -42,7 +42,7 @@ controls.listenToKeyEvents(window); // optional
 // Append renderer to index.html body
 document.body.appendChild(renderer.domElement);
 
-// Cornel box
+// Cornel box function creator
 function createCornellBox(
   boxCenter,
   boxSide,
@@ -131,6 +131,8 @@ scene.add(targetObject);
 // Add ambient light
 const ambientLight = new THREE.AmbientLight(0x404040, 1); // soft white ambientLight
 scene.add(ambientLight);
+
+// Create Cornell Box
 let [
   leftWall,
   rightWall,
@@ -324,6 +326,7 @@ ui.add("slide", {
   max: 10,
 });
 
+// Animation loop
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
