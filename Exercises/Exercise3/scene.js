@@ -103,10 +103,11 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, lightColor, planeS
   scene.add(floor);
 
   let light = new THREE.PointLight(lightColor, lightIntensity, 100);
-  light.position.set(x0, y0 + boxSide / 2 - 1, z0);
+  let lightPosition = [x0, y0 + boxSide / 2 - 1, z0];
+  light.position.set(...lightPosition);
   scene.add(light);
 
-  return [leftWall, rightWall, light];
+  return [leftWall, rightWall, light, lightPosition];
 }
 
 const cornellBoxCenter = [0, 0, -7];
@@ -117,7 +118,7 @@ const boxSize = 9;
 let lightColor = 0xffffff;
 let lightIntensity = 2;
 
-let [leftWall, rightWall, light] = createCornellBox(cornellBoxCenter,
+let [leftWall, rightWall, light, lightPosition] = createCornellBox(cornellBoxCenter,
 						    boxSize,
 						    lightIntensity,
 						    lightColor,
@@ -179,21 +180,18 @@ ui.add('list',
 	   switch (lightTime) {
 	   case "Point light":
 	     light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
-	     light.position.set(x0, y0 + boxSize / 2 - 1, z0);
 	     scene.add(light);
 	     helper = new THREE.PointLightHelper( light );
 	     break;
 	   case "Directional light":
 	     console.log(parseInt(lightColor));
 	     light = new THREE.DirectionalLight( parseInt(lightColor), lightIntensity );
-	     light.position.set(x0, y0 + boxSize / 2 - 2, z0);
 	     light.target = leftWall;
 	     scene.add(light)
 	     helper = new THREE.DirectionalLightHelper( light, 5 );
 	     break;
 	   case "Spot light":
 	     light = new THREE.SpotLight( parseInt(lightColor), lightIntensity );
-	     light.position.set(x0, y0 + boxSize / 2 - 0, z0);
 	     light.target = sphere1;
 	     scene.add(light)
 	     helper = new THREE.SpotLightHelper( light );
@@ -210,6 +208,7 @@ ui.add('list',
 	   if (activateHelper) {
 	     scene.add(helper);
 	   }
+	   light.position.set(...lightPosition);
 	 },
 	 list:["Point light",
 	       "Directional light",
@@ -243,6 +242,14 @@ ui.add('bool', {
     }
   },
   value: activateHelper,
+});
+ui.add('number', {
+  name:'Position',
+  callback:(position)=>{
+    lightPosition = position;
+    light.position.set(...lightPosition);
+  },
+  value:lightPosition
 });
 
 function animate() {
