@@ -257,16 +257,18 @@ ui.add('number', {
   },
   value:lightPosition
 });
-ui.add('number', {
+ui.add('slide', {
   name:'Target',
-  callback:(target)=>{
-    targetObject.position.set(...lightTarget);
+  callback:(targetX)=>{
+    targetObject.position.setX(targetX);
     light.target = targetObject;
     if (activateHelper) {
       helper.update();
     }
   },
-  value:lightTarget
+  value:lightTarget[0],
+  min:-10,
+  max:10,
 });
 
 function animate() {
