@@ -282,7 +282,7 @@ ui.add("number", {
   value: lightPosition,
 });
 ui.add("slide", {
-  name: "Target",
+  name: "Target X",
   callback: (targetX) => {
     targetObject.position.setX(targetX);
     light.target = targetObject;
@@ -291,6 +291,32 @@ ui.add("slide", {
     }
   },
   value: lightTarget[0],
+  min: -10,
+  max: 10,
+});
+ui.add("slide", {
+  name: "Target Y",
+  callback: (targetY) => {
+    targetObject.position.setY(targetY);
+    light.target = targetObject;
+    if (activateHelper) {
+      helper.update();
+    }
+  },
+  value: lightTarget[1],
+  min: -10,
+  max: 10,
+});
+ui.add("slide", {
+  name: "Target Z",
+  callback: (targetZ) => {
+    targetObject.position.setZ(targetZ);
+    light.target = targetObject;
+    if (activateHelper) {
+      helper.update();
+    }
+  },
+  value: lightTarget[2],
   min: -10,
   max: 10,
 });
