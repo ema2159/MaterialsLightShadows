@@ -110,6 +110,7 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, lightColor, planeS
   return [leftWall, rightWall, light, lightPosition];
 }
 
+// Cornell Box properties
 const cornellBoxCenter = [0, 0, -7];
 const [x0, y0, z0] = cornellBoxCenter;
 const boxSize = 9;
@@ -118,7 +119,7 @@ const boxSize = 9;
 let lightColor = 0xffffff;
 let lightIntensity = 2;
 let lightTarget = [0, -3.5, -6];
-const targetObject = new THREE.Object3D();
+const targetObject = new THREE.Object3D(); // Target object for light to track
 targetObject.position.set(...lightTarget);
 scene.add(targetObject);
 
@@ -132,6 +133,7 @@ let [leftWall, rightWall, light, lightPosition] = createCornellBox(cornellBoxCen
 let activateHelper = false;
 let helper = new THREE.PointLightHelper( light );
 
+// Materials
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
   color: 0x0fcf02,
   emissive: 0x2a2a2a,
@@ -171,8 +173,6 @@ scene.add(sphere1);
 
 // GUI
 let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, center:true})
-    .onChange((debug) => {
-    });
 ui.add("title", {name: "Controls", h: 60});
 ui.add('list',
        { name:'Lighting',
@@ -218,6 +218,7 @@ ui.add('list',
 	       "Directional light",
 	       "Spot light",
 	       "Hemisphere light"]});
+
 // Add Light properties controls
 ui.add('slide', {
   name:'Light intensity',
@@ -267,7 +268,6 @@ ui.add('number', {
   },
   value:lightTarget
 });
-console.log(sphere1.position);
 
 function animate() {
   requestAnimationFrame(animate);
