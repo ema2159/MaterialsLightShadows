@@ -25,15 +25,14 @@ const renderer = new THREE.WebGLRenderer();
 // Set renderer size (window size)
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-
 // Auto resize
 function resize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener( 'resize', resize, false );
+window.addEventListener("resize", resize, false);
 
 // Setup orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -44,7 +43,13 @@ controls.listenToKeyEvents(window); // optional
 document.body.appendChild(renderer.domElement);
 
 // Cornel box
-function createCornellBox(boxCenter, boxSide, lightIntensity, lightColor, planeSegments) {
+function createCornellBox(
+  boxCenter,
+  boxSide,
+  lightIntensity,
+  lightColor,
+  planeSegments
+) {
   const [x0, y0, z0] = boxCenter;
   const cornellPlaneGeometry = new THREE.PlaneBufferGeometry(
     boxSide,
@@ -123,15 +128,19 @@ const targetObject = new THREE.Object3D(); // Target object for light to track
 targetObject.position.set(...lightTarget);
 scene.add(targetObject);
 
-let [leftWall, rightWall, light, lightPosition] = createCornellBox(cornellBoxCenter,
-						    boxSize,
-						    lightIntensity,
-						    lightColor,
-						    [100, 100]);
+let [
+  leftWall,
+  rightWall,
+  light,
+  lightPosition,
+] = createCornellBox(cornellBoxCenter, boxSize, lightIntensity, lightColor, [
+  100,
+  100,
+]);
 
 // Light helper
 let activateHelper = false;
-let helper = new THREE.PointLightHelper( light );
+let helper = new THREE.PointLightHelper(light);
 
 // Materials
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
@@ -172,76 +181,91 @@ sphere1.position.set(x0, y0 - boxSize / 2 + sphereProps[0], z0 + 1);
 scene.add(sphere1);
 
 // GUI
-let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, center:true})
+let ui = new UIL.Gui({
+  css: "top:145px; left:20%;",
+  size: 300,
+  w: 420,
+  h: 20,
+  center: true,
+});
 ui.add("title", {name: "Controls", h: 60});
-ui.add('list',
-       { name:'Lighting',
-	 callback: (lightTime) => {
-	   scene.remove(light);
-	   if (activateHelper) {
-	     scene.remove(helper);
-	   }
-	   switch (lightTime) {
-	   case "Point light":
-	     light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
-	     scene.add(light);
-	     helper = new THREE.PointLightHelper( light );
-	     break;
-	   case "Directional light":
-	     console.log(parseInt(lightColor));
-	     light = new THREE.DirectionalLight( parseInt(lightColor), lightIntensity );
-	     light.target = targetObject;
-	     scene.add(light)
-	     helper = new THREE.DirectionalLightHelper( light, 5 );
-	     break;
-	   case "Spot light":
-	     light = new THREE.SpotLight( parseInt(lightColor), lightIntensity );
-	     light.target = targetObject;
-	     scene.add(light)
-	     helper = new THREE.SpotLightHelper( light );
-	     break;
-	   case "Hemisphere light":
-	     light = new THREE.HemisphereLight( parseInt(lightColor), 0x080820, lightIntensity );
-	     scene.add( light );
-	     helper = new THREE.HemisphereLightHelper( light );
-	     break;
-	   default:
-	     console.log("Invalid option. Should be unreachable.");
-	     break;
-	   }
-	   if (activateHelper) {
-	     scene.add(helper);
-	   }
-	   light.position.set(...lightPosition);
-	 },
-	 list:["Point light",
-	       "Directional light",
-	       "Spot light",
-	       "Hemisphere light"]});
+ui.add("list", {
+  name: "Lighting",
+  callback: (lightTime) => {
+    scene.remove(light);
+    if (activateHelper) {
+      scene.remove(helper);
+    }
+    switch (lightTime) {
+      case "Point light":
+        light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
+        scene.add(light);
+        helper = new THREE.PointLightHelper(light);
+        break;
+      case "Directional light":
+        console.log(parseInt(lightColor));
+        light = new THREE.DirectionalLight(
+          parseInt(lightColor),
+          lightIntensity
+        );
+        light.target = targetObject;
+        scene.add(light);
+        helper = new THREE.DirectionalLightHelper(light, 5);
+        break;
+      case "Spot light":
+        light = new THREE.SpotLight(parseInt(lightColor), lightIntensity);
+        light.target = targetObject;
+        scene.add(light);
+        helper = new THREE.SpotLightHelper(light);
+        break;
+      case "Hemisphere light":
+        light = new THREE.HemisphereLight(
+          parseInt(lightColor),
+          0x080820,
+          lightIntensity
+        );
+        scene.add(light);
+        helper = new THREE.HemisphereLightHelper(light);
+        break;
+      default:
+        console.log("Invalid option. Should be unreachable.");
+        break;
+    }
+    if (activateHelper) {
+      scene.add(helper);
+    }
+    light.position.set(...lightPosition);
+  },
+  list: ["Point light", "Directional light", "Spot light", "Hemisphere light"],
+});
 
 // Add Light properties controls
-ui.add('slide', {
-  name:'Light intensity',
+ui.add("slide", {
+  name: "Light intensity",
   callback: (intensity) => {
     lightIntensity = intensity;
     light.intensity = lightIntensity;
   },
-  value:lightIntensity, min:0, max:5, fontColor:'#FFFFFF', stype:1
+  value: lightIntensity,
+  min: 0,
+  max: 5,
+  fontColor: "#FFFFFF",
+  stype: 1,
 });
 ui.add("color", {
   name: "Light color",
   callback: (color) => {
     lightColor = color;
-    light.color.setHex( lightColor );
+    light.color.setHex(lightColor);
   },
   type: "html",
   value: lightColor,
 });
-ui.add('bool', {
-  name:'Light helper',
+ui.add("bool", {
+  name: "Light helper",
   callback: (activate) => {
     activateHelper = activate;
-    if(activate) {
+    if (activate) {
       scene.add(helper);
     } else {
       scene.remove(helper);
@@ -249,26 +273,26 @@ ui.add('bool', {
   },
   value: activateHelper,
 });
-ui.add('number', {
-  name:'Position',
-  callback:(position)=>{
+ui.add("number", {
+  name: "Position",
+  callback: (position) => {
     lightPosition = position;
     light.position.set(...lightPosition);
   },
-  value:lightPosition
+  value: lightPosition,
 });
-ui.add('slide', {
-  name:'Target',
-  callback:(targetX)=>{
+ui.add("slide", {
+  name: "Target",
+  callback: (targetX) => {
     targetObject.position.setX(targetX);
     light.target = targetObject;
     if (activateHelper) {
       helper.update();
     }
   },
-  value:lightTarget[0],
-  min:-10,
-  max:10,
+  value: lightTarget[0],
+  min: -10,
+  max: 10,
 });
 
 function animate() {
