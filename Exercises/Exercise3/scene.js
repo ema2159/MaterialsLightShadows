@@ -114,9 +114,13 @@ const cornellBoxCenter = [0, 0, -7];
 const [x0, y0, z0] = cornellBoxCenter;
 const boxSize = 9;
 
-// Light properties
+// Light properties (for GUI)
 let lightColor = 0xffffff;
 let lightIntensity = 2;
+let lightTarget = [0, -3.5, -6];
+const targetObject = new THREE.Object3D();
+targetObject.position.set(...lightTarget);
+scene.add(targetObject);
 
 let [leftWall, rightWall, light, lightPosition] = createCornellBox(cornellBoxCenter,
 						    boxSize,
@@ -186,13 +190,13 @@ ui.add('list',
 	   case "Directional light":
 	     console.log(parseInt(lightColor));
 	     light = new THREE.DirectionalLight( parseInt(lightColor), lightIntensity );
-	     light.target = leftWall;
+	     light.target = targetObject;
 	     scene.add(light)
 	     helper = new THREE.DirectionalLightHelper( light, 5 );
 	     break;
 	   case "Spot light":
 	     light = new THREE.SpotLight( parseInt(lightColor), lightIntensity );
-	     light.target = sphere1;
+	     light.target = targetObject;
 	     scene.add(light)
 	     helper = new THREE.SpotLightHelper( light );
 	     break;
@@ -221,7 +225,8 @@ ui.add('slide', {
     lightIntensity = intensity;
     light.intensity = lightIntensity;
   },
-  value:lightIntensity, min:0, max:5, fontColor:'#FFFFFF', stype:1});
+  value:lightIntensity, min:0, max:5, fontColor:'#FFFFFF', stype:1
+});
 ui.add("color", {
   name: "Light color",
   callback: (color) => {
@@ -251,6 +256,18 @@ ui.add('number', {
   },
   value:lightPosition
 });
+ui.add('number', {
+  name:'Target',
+  callback:(target)=>{
+    targetObject.position.set(...lightTarget);
+    light.target = targetObject;
+    if (activateHelper) {
+      helper.update();
+    }
+  },
+  value:lightTarget
+});
+console.log(sphere1.position);
 
 function animate() {
   requestAnimationFrame(animate);
