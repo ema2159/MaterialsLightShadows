@@ -128,6 +128,9 @@ const targetObject = new THREE.Object3D(); // Target object for light to track
 targetObject.position.set(...lightTarget);
 scene.add(targetObject);
 
+// Add ambient light
+const ambientLight = new THREE.AmbientLight(0x404040, 1); // soft white ambientLight
+scene.add(ambientLight);
 let [
   leftWall,
   rightWall,
