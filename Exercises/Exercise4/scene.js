@@ -121,10 +121,15 @@ const ambientLight = new THREE.AmbientLight(0x404040, ambientLightIntensity); //
 scene.add(ambientLight);
 
 
-const lambertianMaterial1 = new THREE.MeshLambertMaterial({
+const lambertianProperties = {
   color: 0x0fcf02,
   emissive: 0x2a2a2a,
   emissiveIntensity: 0.5,
+  opacity: 1,
+  transparent: true
+}
+let lambertianMaterial = new THREE.MeshLambertMaterial({
+  ...lambertianProperties
 });
 
 const phongMaterial = new THREE.MeshPhongMaterial({
@@ -140,7 +145,7 @@ const physicalMaterial = new THREE.MeshPhysicalMaterial({
 // Cone
 const coneProps = [1, 4, 100];
 const coneGeometry1 = new THREE.ConeGeometry(...coneProps);
-const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial1);
+const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial);
 cone1.position.set(x0 - 2, y0 - boxSize / 2 + coneProps[1] / 2, z0 - 2);
 scene.add(cone1);
 
