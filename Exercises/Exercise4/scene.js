@@ -168,24 +168,36 @@ let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, cente
     .onChange((debug) => {
     });
 ui.add("title", {name: "Controls", h: 60});
-// Add Walls controls
+// Cone
+ui.add("title", {name: "Cone", h: 30});
+ui.add('slide', {
+  name:'Emissive intensity',
+  callback: (value) => cone1.material.emissiveIntensity = value,
+  value:0.5, min:0, max:5, fontColor:'#FFFFFF', stype:2});
 ui.add("color", {
-  name: "Left Wall Color",
-  callback: (color) => leftWall.material.color.setHex(color),
-  type: "html",
-  value: 0xe80202,
-});
-ui.add("color", {
-  name: "Right Wall Color",
-  callback: (color) => rightWall.material.color.setHex(color),
+  name: "Emissive color",
+  callback: (color) => {
+    lambertianProperties.emissive = parseInt(color);
+    lambertianMaterial = new THREE.MeshLambertMaterial({
+      ...lambertianProperties,
+      emissiveIntensity: lambertianProperties.emissiveIntensity,
+    });
+    cone1.material = lambertianMaterial;
+  },
   type: "html",
   value: 0x0fcf02,
 });
-// Add Light intensity controls
 ui.add('slide', {
-  name:'Light intensity',
-  callback: (intensity) => light.intensity = intensity,
-  value:2, min:0, max:5, fontColor:'#FFFFFF', stype:1});
+  name:'Opacity',
+  callback: (value) => {
+    lambertianProperties.opacity = value;
+    lambertianMaterial = new THREE.MeshLambertMaterial({
+      ...lambertianProperties,
+      opacity: lambertianProperties.opacity,
+    });
+    cone1.material = lambertianMaterial;
+  },
+  value:1, min:0, max:1, fontColor:'#FFFFFF', stype:2});
 
 function animate() {
   requestAnimationFrame(animate);
