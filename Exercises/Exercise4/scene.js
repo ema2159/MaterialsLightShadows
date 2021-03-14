@@ -174,8 +174,14 @@ const phongMaterial = new THREE.MeshPhongMaterial({
   ...phongProperties
 });
 
-const physicalMaterial = new THREE.MeshPhysicalMaterial({
+const physicalProperties = {
   color: 0xe80202,
+  roughness: 1,
+  metalness: 0,
+  roughnessMap: null
+}
+const physicalMaterial = new THREE.MeshPhysicalMaterial({
+  ...physicalProperties
 });
 
 // Cone
