@@ -371,6 +371,15 @@ ui.add("slide", {
   min: 0,
   max: 90,
 });
+ui.add("slide", {
+  name: "Light distance",
+  callback: (value) => {
+    light.distance = value;
+  },
+  value: 0,
+  min: 0,
+  max: 40,
+});
 
 // Animation loop
 function animate() {
