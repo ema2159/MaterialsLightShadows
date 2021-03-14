@@ -352,6 +352,16 @@ ui.add("slide", {
   min: -10,
   max: 10,
 });
+ui.add("title", {name: "Shadow properties (some depend on the light)", h: 60});
+ui.add("slide", {
+  name: "Penumbra",
+  callback: (value) => {
+    light.penumbra = value;
+  },
+  value: 1,
+  min: 0,
+  max: 1,
+});
 
 // Animation loop
 function animate() {
