@@ -242,9 +242,8 @@ ui.add("list", {
     light.position.set(...lightPosition);
     light.castShadow = true;
     scene.add(light);
-
   },
-  list: ["Point light", "Directional light", "Spot light", "Hemisphere light"],
+  list: ["Point light", "Directional light", "Spot light"],
 });
 
 // Ambient light controlls
