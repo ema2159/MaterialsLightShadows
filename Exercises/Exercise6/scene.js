@@ -219,7 +219,6 @@ ui.add("list", {
     switch (lightTime) {
       case "Point light":
         light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
-        scene.add(light);
         helper = new THREE.PointLightHelper(light);
         break;
       case "Directional light":
@@ -229,13 +228,11 @@ ui.add("list", {
           lightIntensity
         );
         light.target = targetObject;
-        scene.add(light);
         helper = new THREE.DirectionalLightHelper(light, 5);
         break;
       case "Spot light":
         light = new THREE.SpotLight(parseInt(lightColor), lightIntensity);
         light.target = targetObject;
-        scene.add(light);
         helper = new THREE.SpotLightHelper(light);
         break;
       case "Hemisphere light":
@@ -244,7 +241,6 @@ ui.add("list", {
           0x080820,
           lightIntensity
         );
-        scene.add(light);
         helper = new THREE.HemisphereLightHelper(light);
         break;
       default:
@@ -255,6 +251,9 @@ ui.add("list", {
       scene.add(helper);
     }
     light.position.set(...lightPosition);
+    light.castShadow = true;
+    scene.add(light);
+
   },
   list: ["Point light", "Directional light", "Spot light", "Hemisphere light"],
 });
