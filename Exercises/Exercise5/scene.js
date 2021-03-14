@@ -120,10 +120,10 @@ const cornellBoxCenter = [0, 0, -7];
 const [x0, y0, z0] = cornellBoxCenter;
 const boxSize = 9;
 
-const [leftWall, rightWall, light] = createCornellBox(cornellBoxCenter, boxSize, 2, [100, 100]);
+const [leftWall, rightWall, light] = createCornellBox(cornellBoxCenter, boxSize, 0.5, [100, 100]);
 
 // Add ambient light
-let ambientLightIntensity = 0.3;
+let ambientLightIntensity = 0.9;
 const ambientLight = new THREE.AmbientLight(0x404040, ambientLightIntensity); // soft white ambientLight
 scene.add(ambientLight);
 
