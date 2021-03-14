@@ -231,14 +231,6 @@ ui.add("list", {
         light = new THREE.SpotLight(parseInt(lightColor), lightIntensity);
         light.target = targetObject;
         break;
-      case "Hemisphere light":
-        light = new THREE.HemisphereLight(
-          parseInt(lightColor),
-          0x080820,
-          lightIntensity
-        );
-        helper = new THREE.HemisphereLightHelper(light);
-        break;
       default:
         console.log("Invalid option. Should be unreachable.");
         break;
