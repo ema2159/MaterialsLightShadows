@@ -269,7 +269,7 @@ ui.add('slide', {
   },
   value: lambertianProperties.opacity, min:0, max:1, fontColor:'#FFFFFF', stype:2});
 // Sphere UI configurtion
-ui.add("title", {name: "Cylinder", h: 30});
+ui.add("title", {name: "Sphere", h: 30});
 ui.add('slide', {
   name:'Shininess',
   callback: (value) => {
@@ -320,7 +320,7 @@ ui.add('slide', {
   },
   value: phongProperties.refractionRatio, min: 0, max: 1, fontColor:'#FFFFFF', stype:2});
 // Cylinder UI configurtion
-ui.add("title", {name: "Sphere", h: 30});
+ui.add("title", {name: "Cylinder", h: 30});
 ui.add('slide', {
   name:'Metalness',
   callback: (value) => {
