@@ -22,6 +22,9 @@ camera.position.z = 0;
 
 // Renderer setup
 const renderer = new THREE.WebGLRenderer();
+// Enable shadows in scene
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // Set renderer size (window size)
 renderer.setSize(window.innerWidth, window.innerHeight);
 
