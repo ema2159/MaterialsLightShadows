@@ -316,9 +316,6 @@ ui.add("slide", {
   callback: (targetX) => {
     targetObject.position.setX(targetX);
     light.target = targetObject;
-    if (activateHelper) {
-      helper.update();
-    }
   },
   value: lightTarget[0],
   min: -10,
@@ -329,9 +326,6 @@ ui.add("slide", {
   callback: (targetY) => {
     targetObject.position.setY(targetY);
     light.target = targetObject;
-    if (activateHelper) {
-      helper.update();
-    }
   },
   value: lightTarget[1],
   min: -10,
@@ -342,9 +336,6 @@ ui.add("slide", {
   callback: (targetZ) => {
     targetObject.position.setZ(targetZ);
     light.target = targetObject;
-    if (activateHelper) {
-      helper.update();
-    }
   },
   value: lightTarget[2],
   min: -10,
