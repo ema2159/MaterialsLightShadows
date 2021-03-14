@@ -261,7 +261,7 @@ ui.add('slide', {
 		   cone1);
   },
   value: lambertianProperties.opacity, min:0, max:1, fontColor:'#FFFFFF', stype:2});
-// Cylinder UI configurtion
+// Sphere UI configurtion
 ui.add("title", {name: "Cylinder", h: 30});
 ui.add('slide', {
   name:'Shininess',
@@ -312,6 +312,38 @@ ui.add('slide', {
 		   sphere1);
   },
   value: phongProperties.refractionRatio, min: 0, max: 1, fontColor:'#FFFFFF', stype:2});
+// Cylinder UI configurtion
+ui.add("title", {name: "Sphere", h: 30});
+ui.add('slide', {
+  name:'Metalness',
+  callback: (value) => {
+    updateMaterial(THREE.MeshPhysicalMaterial,
+		   physicalProperties,
+		   'metalness',
+		   value,
+		   cylinder1);
+  },
+  value: physicalProperties.metalness, min:0, max:1, fontColor:'#FFFFFF', stype:2});
+ui.add('slide', {
+  name:'Roughness',
+  callback: (value) => {
+    updateMaterial(THREE.MeshPhysicalMaterial,
+		   physicalProperties,
+		   'roughness',
+		   value,
+		   cylinder1);
+  },
+  value: physicalProperties.roughness, min:0, max:1, fontColor:'#FFFFFF', stype:2});
+ui.add('list', {
+  name:'Roughness Map',
+  callback:(map)=> {
+    updateMaterial(THREE.MeshPhysicalMaterial,
+		   physicalProperties,
+		   'roughnessMap',
+		   roughnessMaps[map],
+		   cylinder1);
+  },
+  list: Object.keys(roughnessMaps)});
 
 function animate() {
   requestAnimationFrame(animate);
