@@ -154,7 +154,7 @@ let [
 
 // Light helper
 let activateHelper = false;
-let helper = new THREE.PointLightHelper(light);
+let helper = new THREE.CameraHelper(light.shadow.camera);
 
 // Materials
 const lambertianMaterial1 = new THREE.MeshLambertMaterial({
@@ -219,7 +219,6 @@ ui.add("list", {
     switch (lightTime) {
       case "Point light":
         light = new THREE.PointLight(parseInt(lightColor), lightIntensity, 100);
-        helper = new THREE.PointLightHelper(light);
         break;
       case "Directional light":
         console.log(parseInt(lightColor));
@@ -228,12 +227,10 @@ ui.add("list", {
           lightIntensity
         );
         light.target = targetObject;
-        helper = new THREE.DirectionalLightHelper(light, 5);
         break;
       case "Spot light":
         light = new THREE.SpotLight(parseInt(lightColor), lightIntensity);
         light.target = targetObject;
-        helper = new THREE.SpotLightHelper(light);
         break;
       case "Hemisphere light":
         light = new THREE.HemisphereLight(
@@ -247,6 +244,7 @@ ui.add("list", {
         console.log("Invalid option. Should be unreachable.");
         break;
     }
+    helper = new THREE.CameraHelper(light.shadow.camera);
     if (activateHelper) {
       scene.add(helper);
     }
