@@ -254,6 +254,7 @@ ui.add("list", {
     light.position.set(...lightPosition);
     light.castShadow = true;
     scene.add(light);
+    updateCamera();
   },
   list: ["Point light", "Directional light", "Spot light"],
 });
@@ -302,6 +303,7 @@ ui.add("bool", {
     } else {
       scene.remove(helper);
     }
+    updateCamera();
   },
   value: activateHelper,
 });
