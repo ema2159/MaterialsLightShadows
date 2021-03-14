@@ -132,6 +132,33 @@ let lambertianMaterial = new THREE.MeshLambertMaterial({
   ...lambertianProperties
 });
 
+// Function for importing sample textures for the envMaps material property
+function importEnvMaps() {
+  const texturesPath = "./textures/SwedishRoyalCastle/";
+  const texturesFormat = '.jpg';
+  const urls = [
+    texturesPath + 'px' + texturesFormat, texturesPath + 'nx' + texturesFormat,
+    texturesPath + 'py' + texturesFormat, texturesPath + 'ny' + texturesFormat,
+    texturesPath + 'pz' + texturesFormat, texturesPath + 'nz' + texturesFormat
+  ];
+
+  const cubeTextureLoader = new THREE.CubeTextureLoader();
+
+  const reflectionCube = cubeTextureLoader.load( urls );
+  reflectionCube.texturesFormat = THREE.RGBFormat;
+
+  const refractionCube = cubeTextureLoader.load( urls );
+  refractionCube.mapping = THREE.CubeRefractionMapping;
+  refractionCube.texturesFormat = THREE.RGBFormat;
+
+  return {
+    none: null,
+    reflection: reflectionCube,
+    refraction: refractionCube
+  };
+}
+
+const envMaps = importEnvMaps();
 const phongMaterial = new THREE.MeshPhongMaterial({
   color: 0xe80202,
   shininess: 100,
