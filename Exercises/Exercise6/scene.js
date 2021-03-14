@@ -200,6 +200,16 @@ sphere1.castShadow = true; //default is false
 sphere1.receiveShadow = false; //default
 scene.add(sphere1);
 
+// Update camera utility function
+function updateCamera() {
+      // update the light target's matrixWorld because it's needed by the helper
+      light.target.updateMatrixWorld();
+      // update the light's shadow camera's projection matrix
+      light.shadow.camera.updateProjectionMatrix();
+      // and now update the camera helper we're using to show the light's shadow camera
+      helper.update();
+    }
+
 // GUI
 let ui = new UIL.Gui({
   css: "top:145px; left:20%;",
@@ -354,6 +364,7 @@ ui.add("slide", {
   name: "Angle",
   callback: (value) => {
     light.angle = (Math.PI*value)/90;
+    updateCamera();
   },
   value: 30,
   min: 0,
@@ -363,6 +374,7 @@ ui.add("slide", {
   name: "Light distance",
   callback: (value) => {
     light.distance = value;
+    updateCamera();
   },
   value: 0,
   min: 0,
