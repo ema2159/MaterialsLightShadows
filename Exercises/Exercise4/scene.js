@@ -159,10 +159,18 @@ function importEnvMaps() {
 }
 
 const envMaps = importEnvMaps();
-const phongMaterial = new THREE.MeshPhongMaterial({
+
+const phongProperties = {
   color: 0xe80202,
-  shininess: 100,
-  specular: 0xe80202,
+  shininess: 30,
+  specular: 0xFFFFFF,
+  flatShading: false,
+  envMap: null,
+  reflectivity: 1,
+  refractionRatio: 0.98
+}
+const phongMaterial = new THREE.MeshPhongMaterial({
+  ...phongProperties
 });
 
 const physicalMaterial = new THREE.MeshPhysicalMaterial({
