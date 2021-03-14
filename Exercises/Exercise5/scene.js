@@ -1,6 +1,5 @@
 import * as THREE from "https://unpkg.com/three/build/three.module.js";
 import {OrbitControls} from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
-import {RectAreaLightHelper} from "https://unpkg.com/three/examples/jsm/helpers/RectAreaLightHelper.js";
 import "./node_modules/uil/build/uil.js";
 
 const pi = Math.PI; // I am tired of writing Math.PI
@@ -80,7 +79,6 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
   rectLight1.position.set(x0 - boxSide / 2, y0, z0);
   rectLight1.rotation.y -= pi / 2;
   scene.add( rectLight1 );
-  scene.add( new RectAreaLightHelper( rectLight1 ) );
 
   const rightWall = new THREE.Mesh(
     cornellPlaneGeometry,
@@ -93,7 +91,6 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
   rectLight2.position.set(x0 + boxSide / 2, y0, z0);
   rectLight2.rotation.y += pi / 2;
   scene.add( rectLight2 );
-  scene.add( new RectAreaLightHelper( rectLight2 ) );
 
   const backWall = new THREE.Mesh(
     cornellPlaneGeometry,
