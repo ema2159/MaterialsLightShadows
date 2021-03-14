@@ -130,9 +130,9 @@ scene.add(ambientLight);
 // Lambertian material and its properties
 const lambertianProperties = {
   color: 0x0fcf02,
-  emissive: 0x2a2a2a,
+  emissive: 0xBEEB33,
   emissiveIntensity: 0.5,
-  opacity: 1,
+  opacity: 0.5,
   transparent: true
 }
 let lambertianMaterial = new THREE.MeshLambertMaterial({
@@ -170,11 +170,11 @@ const envMaps = importEnvMaps();
 
 const phongProperties = {
   color: 0x79e6f3,
-  shininess: 30,
+  shininess: 0,
   specular: 0xFFFFFF,
   flatShading: false,
-  envMap: null,
-  reflectivity: 1,
+  envMap: envMaps.reflection,
+  reflectivity: 0.7,
   refractionRatio: 0.98
 }
 const phongMaterial = new THREE.MeshPhongMaterial({
@@ -193,8 +193,8 @@ const roughnessMaps = {
 const physicalProperties = {
   color: 0xe80202,
   roughness: 1,
-  metalness: 0,
-  roughnessMap: null
+  metalness: 0.84,
+  roughnessMap: roughnessMaps.bricks
 }
 const physicalMaterial = new THREE.MeshPhysicalMaterial({
   ...physicalProperties
