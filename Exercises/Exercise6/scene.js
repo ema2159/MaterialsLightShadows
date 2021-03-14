@@ -239,6 +239,7 @@ ui.add("list", {
         break;
       case "Spot light":
         light = new THREE.SpotLight(parseInt(lightColor), lightIntensity);
+	light.penumbra = 1;
         light.target = targetObject;
         break;
       default:
