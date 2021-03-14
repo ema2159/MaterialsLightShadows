@@ -219,6 +219,7 @@ let ui = new UIL.Gui({
   center: true,
 });
 ui.add("title", {name: "Controls", h: 60});
+// Light type selector
 ui.add("list", {
   name: "Lighting",
   callback: (lightTime) => {
@@ -270,7 +271,7 @@ ui.add("slide", {
   stype: 1,
 });
 
-// Add Light properties controls
+// Light properties controls
 ui.add("slide", {
   name: "Light intensity",
   callback: (intensity) => {
@@ -342,6 +343,7 @@ ui.add("slide", {
   min: -10,
   max: 10,
 });
+// Properties for shadow casting
 ui.add("title", {name: "Shadow properties (some depend on the light)", h: 60});
 ui.add("slide", {
   name: "Penumbra",
