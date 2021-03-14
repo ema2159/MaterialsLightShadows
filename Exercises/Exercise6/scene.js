@@ -371,6 +371,16 @@ ui.add("slide", {
   min: 0,
   max: 40,
 });
+ui.add("slide", {
+  name: "Camera near",
+  callback: (value) => {
+    light.shadow.camera.near = value;
+    updateCamera();
+  },
+  value: 0,
+  min: 0,
+  max: 10,
+});
 
 // Animation loop
 function animate() {
