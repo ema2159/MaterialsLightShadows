@@ -83,6 +83,7 @@ function createCornellBox(
   const leftWall = new THREE.Mesh(cornellPlaneGeometry, redLambertianMaterial);
   leftWall.rotation.y += pi / 2;
   leftWall.position.set(x0 - boxSide / 2, y0, z0);
+  leftWall.receiveShadow = true;
   scene.add(leftWall);
 
   const rightWall = new THREE.Mesh(
@@ -91,6 +92,7 @@ function createCornellBox(
   );
   rightWall.rotation.y -= pi / 2;
   rightWall.position.set(x0 + boxSide / 2, y0, z0);
+  rightWall.receiveShadow = true;
   scene.add(rightWall);
 
   const backWall = new THREE.Mesh(
@@ -98,6 +100,7 @@ function createCornellBox(
     whiteLambertianMaterial
   );
   backWall.position.set(x0, y0, z0 - boxSide / 2);
+  backWall.receiveShadow = true;
   scene.add(backWall);
 
   const roof = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
@@ -108,11 +111,13 @@ function createCornellBox(
   const floor = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
   floor.rotation.x -= pi / 2;
   floor.position.set(x0, y0 - boxSide / 2, z0);
+  floor.receiveShadow = true;
   scene.add(floor);
 
   let light = new THREE.PointLight(lightColor, lightIntensity, 100);
   let lightPosition = [x0, y0 + boxSide / 2 - 1, z0];
   light.position.set(...lightPosition);
+  light.castShadow = true;
   scene.add(light);
 
   return [leftWall, rightWall, light, lightPosition];
@@ -173,6 +178,8 @@ const coneProps = [1, 4, 100];
 const coneGeometry1 = new THREE.ConeGeometry(...coneProps);
 const cone1 = new THREE.Mesh(coneGeometry1, lambertianMaterial1);
 cone1.position.set(x0 - 2, y0 - boxSize / 2 + coneProps[1] / 2, z0 - 2);
+cone1.castShadow = true; //default is false
+cone1.receiveShadow = false; //default
 scene.add(cone1);
 
 // Cylinder
@@ -180,6 +187,8 @@ const cylinderProps = [1, 1, 4, 32];
 const cylinderGeometry1 = new THREE.CylinderGeometry(...cylinderProps);
 const cylinder1 = new THREE.Mesh(cylinderGeometry1, phongMaterial);
 cylinder1.position.set(x0 + 2, y0 - boxSize / 2 + cylinderProps[2] / 2, z0 - 2);
+cylinder1.castShadow = true; //default is false
+cylinder1.receiveShadow = false; //default
 scene.add(cylinder1);
 
 // Sphere 1
@@ -187,6 +196,8 @@ const sphereProps = [1, 30, 30];
 const sphereGeometry1 = new THREE.SphereGeometry(...sphereProps);
 const sphere1 = new THREE.Mesh(sphereGeometry1, physicalMaterial);
 sphere1.position.set(x0, y0 - boxSize / 2 + sphereProps[0], z0 + 1);
+sphere1.castShadow = true; //default is false
+sphere1.receiveShadow = false; //default
 scene.add(sphere1);
 
 // GUI
