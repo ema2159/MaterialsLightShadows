@@ -298,7 +298,8 @@ ui.add('list', {
 		   envMaps[map],
 		   sphere1);
   },
-  list: Object.keys(envMaps)});
+  list: Object.keys(envMaps),
+  value:"reflection"});
 ui.add('slide', {
   name:'Reflectivity',
   callback: (value) => {
@@ -350,7 +351,8 @@ ui.add('list', {
 		   roughnessMaps[map],
 		   cylinder1);
   },
-  list: Object.keys(roughnessMaps)});
+  list: Object.keys(roughnessMaps),
+  value:"bricks"});
 
 function animate() {
   requestAnimationFrame(animate);
