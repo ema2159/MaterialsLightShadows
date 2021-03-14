@@ -208,7 +208,6 @@ ui.add("list", {
         helper = new THREE.PointLightHelper(light);
         break;
       case "Directional light":
-        console.log(parseInt(lightColor));
         light = new THREE.DirectionalLight(
           parseInt(lightColor),
           lightIntensity
