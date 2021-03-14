@@ -244,32 +244,58 @@ ui.add('slide', {
 		   value,
 		   cone1);
   },
-  value:1, min:0, max:1, fontColor:'#FFFFFF', stype:2});
-  value:0.5, min:0, max:5, fontColor:'#FFFFFF', stype:2});
-ui.add("color", {
-  name: "Emissive color",
-  callback: (color) => {
-    lambertianProperties.emissive = parseInt(color);
-    lambertianMaterial = new THREE.MeshLambertMaterial({
-      ...lambertianProperties,
-      emissiveIntensity: lambertianProperties.emissiveIntensity,
-    });
-    cone1.material = lambertianMaterial;
-  },
-  type: "html",
-  value: 0x0fcf02,
-});
+  value: lambertianProperties.opacity, min:0, max:1, fontColor:'#FFFFFF', stype:2});
+// Cylinder UI configurtion
+ui.add("title", {name: "Cylinder", h: 30});
 ui.add('slide', {
-  name:'Opacity',
+  name:'Shininess',
   callback: (value) => {
-    lambertianProperties.opacity = value;
-    lambertianMaterial = new THREE.MeshLambertMaterial({
-      ...lambertianProperties,
-      opacity: lambertianProperties.opacity,
-    });
-    cone1.material = lambertianMaterial;
+    updateMaterial(THREE.MeshPhongMaterial,
+		   phongProperties,
+		   'shininess',
+		   value,
+		   sphere1);
   },
-  value:1, min:0, max:1, fontColor:'#FFFFFF', stype:2});
+  value: phongProperties.shininess, min:0, max:30, fontColor:'#FFFFFF', stype:2});
+ui.add('bool', {
+  name:'Flat shading',
+  callback: (activate) => {
+    updateMaterial(THREE.MeshPhongMaterial,
+		   phongProperties,
+		   'flatShading',
+		   activate,
+		   sphere1);
+  }});
+ui.add('list', {
+  name:'Env Map',
+  callback:(map)=> {
+    updateMaterial(THREE.MeshPhongMaterial,
+		   phongProperties,
+		   'envMap',
+		   envMaps[map],
+		   sphere1);
+  },
+  list: Object.keys(envMaps)});
+ui.add('slide', {
+  name:'Reflectivity',
+  callback: (value) => {
+    updateMaterial(THREE.MeshPhongMaterial,
+		   phongProperties,
+		   'reflectivity',
+		   value,
+		   sphere1);
+  },
+  value: phongProperties.reflectivity, min: 0, max: 1, fontColor:'#FFFFFF', stype:2});
+ui.add('slide', {
+  name:'Refraction Ration',
+  callback: (value) => {
+    updateMaterial(THREE.MeshPhongMaterial,
+		   phongProperties,
+		   'refractionRatio',
+		   value,
+		   sphere1);
+  },
+  value: phongProperties.refractionRatio, min: 0, max: 1, fontColor:'#FFFFFF', stype:2});
 
 function animate() {
   requestAnimationFrame(animate);
