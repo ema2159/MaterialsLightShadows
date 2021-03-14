@@ -163,16 +163,53 @@ const sphere1 = new THREE.Mesh(sphereGeometry1, physicalMaterial);
 sphere1.position.set(x0, y0 - boxSize / 2 + sphereProps[0], z0 + 1);
 scene.add(sphere1);
 
+// Mesh material updating function
+function updateMaterial(Material, materialProperties, property, value, mesh) {
+    materialProperties[property] = value;
+    mesh.material = new Material({
+      ...materialProperties,
+    });
+}
+
 // GUI
 let ui = new UIL.Gui({css: "top:145px; left:20%;", size: 300, w:420, h:20, center:true})
     .onChange((debug) => {
     });
 ui.add("title", {name: "Controls", h: 60});
-// Cone
+// Cone UI configurtion
 ui.add("title", {name: "Cone", h: 30});
 ui.add('slide', {
   name:'Emissive intensity',
-  callback: (value) => cone1.material.emissiveIntensity = value,
+  callback: (value) => {
+    updateMaterial(THREE.MeshLambertMaterial,
+		   lambertianProperties,
+		   'emissiveIntensity',
+		   value,
+		   cone1);
+  },
+  value:0.5, min:0, max:5, fontColor:'#FFFFFF', stype:2});
+ui.add("color", {
+  name: "Emissive color",
+  callback: (color) => {
+    updateMaterial(THREE.MeshLambertMaterial,
+		   lambertianProperties,
+		   'emissive',
+		   parseInt(color),
+		   cone1);
+  },
+  type: "html",
+  value: 0x0fcf02,
+});
+ui.add('slide', {
+  name:'Opacity',
+  callback: (value) => {
+    updateMaterial(THREE.MeshLambertMaterial,
+		   lambertianProperties,
+		   'opacity',
+		   value,
+		   cone1);
+  },
+  value:1, min:0, max:1, fontColor:'#FFFFFF', stype:2});
   value:0.5, min:0, max:5, fontColor:'#FFFFFF', stype:2});
 ui.add("color", {
   name: "Emissive color",
