@@ -222,7 +222,7 @@ ui.add('slide', {
 		   value,
 		   cone1);
   },
-  value:0.5, min:0, max:5, fontColor:'#FFFFFF', stype:2});
+  value: lambertianProperties.emissiveIntensity, min:0, max:5, fontColor:'#FFFFFF', stype:2});
 ui.add("color", {
   name: "Emissive color",
   callback: (color) => {
@@ -233,7 +233,7 @@ ui.add("color", {
 		   cone1);
   },
   type: "html",
-  value: 0x0fcf02,
+  value: lambertianProperties.emissive,
 });
 ui.add('slide', {
   name:'Opacity',
