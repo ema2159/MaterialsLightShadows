@@ -53,11 +53,10 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
     ...planeSegments
   );
 
-  const whiteLambertianMaterial = new THREE.MeshLambertMaterial({
-    color: 0xe1e2d4,
-    emissive: 0x2a2a2a,
-    emissiveIntensity: 0.5,
-    boxSide: THREE.DoubleSide,
+  const whiteStandardMaterial = new THREE.MeshStandardMaterial({
+    color: 0x808080,
+    roughness: 0.1,
+    metalness: 0
   });
   const redLambertianMaterial = new THREE.MeshLambertMaterial({
     color: 0xe80202,
@@ -98,17 +97,17 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
 
   const backWall = new THREE.Mesh(
     cornellPlaneGeometry,
-    whiteLambertianMaterial
+    whiteStandardMaterial
   );
   backWall.position.set(x0, y0, z0 - boxSide / 2);
   scene.add(backWall);
 
-  const roof = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
+  const roof = new THREE.Mesh(cornellPlaneGeometry, whiteStandardMaterial);
   roof.rotation.x += pi / 2;
   roof.position.set(x0, y0 + boxSide / 2, z0);
   scene.add(roof);
 
-  const floor = new THREE.Mesh(cornellPlaneGeometry, whiteLambertianMaterial);
+  const floor = new THREE.Mesh(cornellPlaneGeometry, whiteStandardMaterial);
   floor.rotation.x -= pi / 2;
   floor.position.set(x0, y0 - boxSide / 2, z0);
   scene.add(floor);
