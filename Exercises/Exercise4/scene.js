@@ -174,6 +174,15 @@ const phongMaterial = new THREE.MeshPhongMaterial({
   ...phongProperties
 });
 
+// Physical material and its properties
+const textureLoader = new THREE.TextureLoader();
+const bricksTexture = textureLoader.load('./textures/brick_diffuse.jpg');
+
+const roughnessMaps = {
+  none: null,
+  bricks: bricksTexture
+}
+
 const physicalProperties = {
   color: 0xe80202,
   roughness: 1,
