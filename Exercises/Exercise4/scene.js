@@ -152,14 +152,14 @@ scene.add(cone1);
 // Cylinder
 const cylinderProps = [1, 1, 4, 32];
 const cylinderGeometry1 = new THREE.CylinderGeometry(...cylinderProps);
-const cylinder1 = new THREE.Mesh(cylinderGeometry1, phongMaterial);
+const cylinder1 = new THREE.Mesh(cylinderGeometry1, physicalMaterial);
 cylinder1.position.set(x0 + 2, y0 - boxSize / 2 + cylinderProps[2] / 2, z0 - 2);
 scene.add(cylinder1);
 
 // Sphere 1
 const sphereProps = [1, 30, 30];
 const sphereGeometry1 = new THREE.SphereGeometry(...sphereProps);
-const sphere1 = new THREE.Mesh(sphereGeometry1, physicalMaterial);
+const sphere1 = new THREE.Mesh(sphereGeometry1, phongMaterial);
 sphere1.position.set(x0, y0 - boxSize / 2 + sphereProps[0], z0 + 1);
 scene.add(sphere1);
 
