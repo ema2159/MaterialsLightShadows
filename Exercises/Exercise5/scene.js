@@ -54,8 +54,8 @@ function createCornellBox(boxCenter, boxSide, lightIntensity, planeSegments) {
 
   const whiteStandardMaterial = new THREE.MeshStandardMaterial({
     color: 0x808080,
-    roughness: 0.1,
-    metalness: 0
+    roughness: 0.5,
+    metalness: 0.5
   });
   const redLambertianMaterial = new THREE.MeshLambertMaterial({
     color: 0xe80202,
