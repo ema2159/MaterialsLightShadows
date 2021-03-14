@@ -161,7 +161,7 @@ function importEnvMaps() {
 const envMaps = importEnvMaps();
 
 const phongProperties = {
-  color: 0xe80202,
+  color: 0x79e6f3,
   shininess: 30,
   specular: 0xFFFFFF,
   flatShading: false,
@@ -174,7 +174,7 @@ const phongMaterial = new THREE.MeshPhongMaterial({
 });
 
 const physicalMaterial = new THREE.MeshPhysicalMaterial({
-  color: 0x79e6f3,
+  color: 0xe80202,
 });
 
 // Cone
