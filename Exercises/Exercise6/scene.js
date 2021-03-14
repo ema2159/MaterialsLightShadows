@@ -362,6 +362,15 @@ ui.add("slide", {
   min: 0,
   max: 1,
 });
+ui.add("slide", {
+  name: "Angle",
+  callback: (value) => {
+    light.angle = (Math.PI*value)/90;
+  },
+  value: 30,
+  min: 0,
+  max: 90,
+});
 
 // Animation loop
 function animate() {
