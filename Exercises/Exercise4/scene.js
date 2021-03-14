@@ -120,7 +120,7 @@ let ambientLightIntensity = 0.3;
 const ambientLight = new THREE.AmbientLight(0x404040, ambientLightIntensity); // soft white ambientLight
 scene.add(ambientLight);
 
-
+// Lambertian material and its properties
 const lambertianProperties = {
   color: 0x0fcf02,
   emissive: 0x2a2a2a,
@@ -132,6 +132,7 @@ let lambertianMaterial = new THREE.MeshLambertMaterial({
   ...lambertianProperties
 });
 
+// Phong material and its properties
 // Function for importing sample textures for the envMaps material property
 function importEnvMaps() {
   const texturesPath = "./textures/SwedishRoyalCastle/";
