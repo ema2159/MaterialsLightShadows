@@ -1,5 +1,6 @@
 import * as THREE from "https://unpkg.com/three/build/three.module.js";
 import {OrbitControls} from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
+import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
 import "./node_modules/uil/build/uil.js";
 
 const pi = Math.PI; // I am tired of writing Math.PI
@@ -27,6 +28,11 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // Set renderer size (window size)
 renderer.setSize(window.innerWidth, window.innerHeight);
+// Enable XR
+renderer.xr.enabled = true;
+
+// Add VR button
+document.body.appendChild(VRButton.createButton(renderer));
 
 // Auto resize
 function resize() {
@@ -388,8 +394,6 @@ ui.add("slide", {
 });
 
 // Animation loop
-function animate() {
-  requestAnimationFrame(animate);
+renderer.setAnimationLoop(() => {
   renderer.render(scene, camera);
-}
-animate();
+});
