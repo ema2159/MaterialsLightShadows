@@ -237,11 +237,13 @@ ui.add("list", {
           lightIntensity
         );
         light.target = targetObject;
+	updateCamera();
         break;
       case "Spot light":
         light = new THREE.SpotLight(parseInt(lightColor), lightIntensity);
 	light.penumbra = 1;
         light.target = targetObject;
+	updateCamera();
         break;
       default:
         console.log("Invalid option. Should be unreachable.");
@@ -254,7 +256,6 @@ ui.add("list", {
     light.position.set(...lightPosition);
     light.castShadow = true;
     scene.add(light);
-    updateCamera();
   },
   list: ["Point light", "Directional light", "Spot light"],
 });
