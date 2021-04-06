@@ -18,9 +18,29 @@
    [[./screenshots/ex1.png]]
 
 ** Exercise 2
+   This exercise consisted in utilize the [[https://github.com/lo-th/uil][UIL]] library to create a 2D GUI to manipulate the properties of the elements of the scene.
+   
+   [[./screenshots/ex2.png]]
+
 ** Exercise 2.2
+   This exercise consisted in doing the same thing as in Exercise 2 but utilizing a 3D GUI embedded in a plane in the scene.
+   [[./screenshots/ex2.2.png]]
+
 ** Exercise 3
+   This exercise consisted in trying the different light sources that are included in Three.js, and modifying its properties through a GUI.
+   [[./screenshots/ex3.png]]
+
 ** Exercise 4
+   This exercise consisted in modifying several properties of the materials of the objects included in the scene through a GUI.
+   [[./screenshots/ex4.png]]
+
 ** Exercise 5
+   This exercise consisted in adding surface lighting to the colored walls of the scene to make them a secondary light source and simulating reflection.
+   [[./screenshots/ex5.png]]
+
 ** Exercise 6
+   This exercises consisted in adding shadows to the scene and seeing the effect that several light sources and its properties have over them.
+   [[./screenshots/ex6.png]]
+
 ** Exercise 7
+   This exercise consisted in transforming the scene in Exercise 6 into a virtual reality experience.
