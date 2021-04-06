@@ -3,6 +3,24 @@
 #+OPTIONS: toc:nil
 
 * Description
-  This exercise consists in exploring 
-  
+  This exercise consists in exploring different properties and parameters of the materials and lights that are included in  [[https://threejs.org/][Three.js]].
 
+* Instructions
+  You'll require the [[https://www.npmjs.com/package/live-server][live-server]] NPM package. Then, simply download and execute the =live-server= command inside the =src/= directory. This will lead you to the starting menu, where you should be able to select the desired exercise.
+
+* Exercises
+** Exercise 1
+   This exercise consisted in creating a Cornell box with three meshes:
+   - A cone with a lambertian material
+   - A cylinder with a phong material
+   - A sphere with a physical material
+
+   [[./screenshots/ex1.png]]
+
+** Exercise 2
+** Exercise 2.2
+** Exercise 3
+** Exercise 4
+** Exercise 5
+** Exercise 6
+** Exercise 7
