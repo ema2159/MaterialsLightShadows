@@ -1,4 +1,4 @@
-#+TITLE: Project Work 2: Three.js
+#+TITLE: Project Work 3: Materials - Lighting - Shadows
 #+CREATOR: Emmanuel Bustos T.
 #+OPTIONS: toc:nil
 
