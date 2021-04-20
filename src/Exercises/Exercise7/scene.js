@@ -1,6 +1,6 @@
-import * as THREE from "https://unpkg.com/three/build/three.module.js";
-import {OrbitControls} from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
-import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
+import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
+import { OrbitControls } from "https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js";
+import { VRButton } from 'https://unpkg.com/three@0.126.1/examples/jsm/webxr/VRButton.js';
 import "./vendor/uil/build/uil.js";
 
 const pi = Math.PI; // I am tired of writing Math.PI
