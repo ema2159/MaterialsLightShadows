@@ -1,7 +1,7 @@
 import * as THREE from "https://unpkg.com/three/build/three.module.js";
 import {OrbitControls} from "https://unpkg.com/three/examples/jsm/controls/OrbitControls.js";
 import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
-import "./node_modules/uil/build/uil.js";
+import "./vendor/uil/build/uil.js";
 
 const pi = Math.PI; // I am tired of writing Math.PI
 
