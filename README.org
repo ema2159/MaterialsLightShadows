@@ -6,7 +6,7 @@
   This exercise consists in exploring different properties and parameters of the materials and lights that are included in  [[https://threejs.org/][Three.js]].
 
 * Instructions
-  You'll require the [[https://www.npmjs.com/package/live-server][live-server]] NPM package. Then, simply download and execute the =live-server= command inside the =src/= directory. This will lead you to the starting menu, where you should be able to select the desired exercise.
+  You'll require the [[https://www.npmjs.com/package/live-server][live-server]] NPM package. Then, simply download and execute the =live-server= command inside the =src/= directory. This will lead you to the starting menu, where you should be able to select the desired exercise. You can also view the project in [[https://ema2159.github.io/MaterialsLightShadows/src/][this]] GitHub page.
 
 * Exercises
 ** Exercise 1
